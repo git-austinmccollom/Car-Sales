@@ -6,8 +6,9 @@ import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
 import { initialState, reducer } from './reducers/reducer'
+import { connect } from "react-redux";
 
-const App = () => {
+const App = (props) => {
 
   const [ state, dispatch ] = useReducer( reducer, initialState )
 
@@ -15,7 +16,7 @@ const App = () => {
     <div className="boxes">
       <div className="box">
         <Header car={state.car} />
-        <AddedFeatures />
+        <AddedFeatures car={state.car}/>
       </div>
       <div className="box">
         <AdditionalFeatures additionalFeatures={state.additionalFeatures} />
@@ -25,4 +26,10 @@ const App = () => {
   );
 };
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    features: state.car.features
+  }
+}
+
+export default connect( mapStateToProps, {})(App);
