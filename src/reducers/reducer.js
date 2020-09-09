@@ -15,6 +15,6 @@ export const initialState = {
     ]
   };
 
-export const reducer = () => {
-    return 'this is the reducer';
+export const reducer = (state = initialState, dispatch) => {
+    return state;
 }
